@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv sh
+
+cd /app
+
+if [ -f .env ]
+then
+  export $(cat .env) && exec gunicorn app:app -c gunicorn.conf.py
+else
+  exec gunicorn app:app -c gunicorn.conf.py
+fi
